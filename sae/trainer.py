@@ -435,8 +435,10 @@ class SaeTrainer:
 
     def save(self):
         """Save the SAEs to disk."""
+        path = self.cfg.save_path
+        if path is None:
+            path = self.cfg.run_name or "sae-ckpts"
 
-        path = self.cfg.run_name or "sae-ckpts"
         rank_zero = not dist.is_initialized() or dist.get_rank() == 0
 
         if rank_zero or self.cfg.distribute_modules:

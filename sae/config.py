@@ -68,6 +68,8 @@ class TrainConfig(Serializable):
     run_name: str | None = None
     wandb_log_frequency: int = 1
 
+    save_path: str | None = None
+
     def __post_init__(self):
         assert not (
             self.layers and self.layer_stride != 1
